@@ -12,11 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CreateUserAction
 {
-    public MessageBusInterface $commandBus;
+    public MessageBusInterface $messageBus;
 
-    public function __construct(MessageBusInterface $commandBus)
+    public function __construct(MessageBusInterface $messageBus)
     {
-        $this->commandBus = $commandBus;
+        $this->messageBus = $messageBus;
     }
 
     #[Route('/users', methods: ['POST'])]
@@ -30,7 +30,7 @@ class CreateUserAction
             $data['lastName']
         );
 
-        $this->commandBus->dispatch($command);
+        $this->messageBus->dispatch($command);
         return new JsonResponse($data, Response::HTTP_CREATED);
     }
 }
