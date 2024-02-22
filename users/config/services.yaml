@@ -19,6 +19,15 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
+    App\Infrastructure\Action\:
+        resource: '../src/Infrastructure/Action/'
+        public: true
+        tags: ['controller.service_arguments']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # need to update this to affect all handlers
+    App\Application\Command\CreateUserCommandHandler:
+        arguments:
+            - '@App\Domain\Repository\UserRepositoryInterface'
+        tags: ['messenger.message_handler']
