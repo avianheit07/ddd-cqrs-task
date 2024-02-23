@@ -16,13 +16,15 @@ class CreateUserCommandHandler
         $this->userRepository = $userRepository;
     }
 
-    public function __invoke(CreateUserCommand $command): void
+    public function __invoke(CreateUserCommand $command): User
     {
-        $this->userRepository->save((new User(
-            email: $command->getEmail(),
-            firstName: $command->getFirstName(),
-            lastName: $command->getLastName()
-        )));
+        $user = $this->userRepository->save([
+            'email'     => $command->getEmail(),
+            'firstName' => $command->getFirstName(),
+            'lastName'  => $command->getLastName()
+        ]);
+
+        return $user;
     }
 }
 ?>
