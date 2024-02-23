@@ -31,3 +31,6 @@ services:
         arguments:
             - '@App\Domain\Repository\UserRepositoryInterface'
         tags: ['messenger.message_handler']
+
+    Psr\Log\LoggerInterface:
+        autowire: true
