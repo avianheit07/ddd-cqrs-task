@@ -62,9 +62,6 @@ class User implements JsonSerializable
         $this->lastName = $lastName;
     }
 
-    /**
-     * @return array{email: string, firstName: string, id: string, lastName: string}
-     */
     public function jsonSerialize(): array
     {
         return [
