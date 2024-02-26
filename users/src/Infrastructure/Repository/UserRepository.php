@@ -18,16 +18,12 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * @param array{email: string, firstName: string, lastName: string}
+     * @param array{email: string, firstName: string, lastName: string} $data
      * @return User
      */
     public function save(array $data): User
     {
-        $user = new User(
-            email: $data['email'],
-            firstName: $data['firstName'],
-            lastName: $data['lastName']
-        );
+        $user = new User($data['email'], $data['firstName'], $data['lastName']);
 
         // or change here for saving to database
         $this->logger->debug('User created', $user->jsonSerialize());

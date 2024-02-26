@@ -8,5 +8,9 @@ use App\Domain\Model\User;
 
 interface UserRepositoryInterface
 {
+    /**
+     * @param array{email: string, firstName: string, lastName: string} $data
+     * @return User
+     */
     public function save(array $data): User;
 }
